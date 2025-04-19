@@ -1,58 +1,248 @@
 {
-    "Title": "Campus Life on the West Side",
-    "Credits": "Created by Adam Smith (amsmith@ucsc.edu).",
-    "InitialLocation": "Kresge",
+    "Title": "Trash Disposal Escape",
+    "Credits": "Created by Aryan Sidbatte",
+    "InitialLocation": "Start",
     "Locations": {
-        "Kresge": {
-            "Body": "This is Kresge College, lots of nice trees.",
-            "Choices": [
-                {
-                    "Text": "South",
-                    "Target": "Porter"
-                }
-            ]
-        },
-        "Porter": {
-            "Body": "This is Porter College, the trees are nice here too.",
-            "Choices": [
-                {
-                    "Text": "North",
-                    "Target": "Kresge"
-                },
-                {
-                    "Text": "South",
-                    "Target": "Rachel Carson"
-                }
-            ]
-        },
-        "Rachel Carson": {
-            "Body": "Rachel Carson College, more sun and fewer trees.",
-            "Choices": [
-                {
-                    "Text": "North",
-                    "Target": "Porter"
-                },
-                {
-                    "Text": "South",
-                    "Target": "Oakes"
-                }
-            ]
-        },
-        "Oakes": {
-            "Body": "Oakes College, even the buildings have tree bark on them.",
-            "Choices": [
-                {
-                    "Text": "North",
-                    "Target": "Rachel Carson"
-                },
-                {
-                    "Text": "South",
-                    "Target": "Beyond"
-                }
-            ]
-        },
-        "Beyond": {
-            "Body": "Grass, don't forget to check for ticks!"
-        }
+      "Start": {
+        "Body": "You groggily wake up for your early shift on the spaceship USS Charon. As you go to the mess hall to grab a cup of coffee you somehow fall into the garbage disposal chute.",
+        "Choices": [
+          {
+            "Text": "...",
+            "Target": "Look Around",
+            "InventoryAdd": "Knife"
+          }
+        ]
+      },
+      "Look Around": {
+        "Body": "The fall jolts you fully awake and now you find yourself upon a pile of trash in a large room with a flashing red light. You realize that you only have around 30 minutes before all this trash gets jettisoned into space. All you have is a knife.\n\nYou see multiple points of interest.",
+        "Choices": [
+          {
+            "Text": "A loose panel",
+            "Target": "Electrical Components"
+          },
+          {
+            "Text": "The glowing pile of trash",
+            "Target": "Power Cell"
+          },
+          {
+            "Text": "Some exposed wiring",
+            "Target": "Sparking Wires"
+          },
+          {
+            "Text": "A rusty box",
+            "Target": "Wrench"
+          },
+          {
+            "Text": "Go through the door",
+            "Target": "Go through the door"
+          }
+        ]
+      },
+      "Electrical Components": {
+        "Body": "You find a loose panel with some components inside.",
+        "Choices": [
+          {
+            "Text": "Take Components",
+            "Target": "Look Around",
+            "InventoryAdd": "Electrical Components"
+          }
+        ]
+      },
+      "Power Cell": {
+        "Body": "You rummage through the trash and find a glowing power cell. You think this may be useful.",
+        "Choices": [
+          {
+            "Text": "Take Power Cell",
+            "Target": "Look Around",
+            "InventoryAdd": "Power Cell"
+          }
+        ]
+      },
+      "Sparking Wires": {
+        "Body": "You see some exposed wires sparking. You think this may be useful.",
+        "Choices": [
+          {
+            "Text": "Cut Wires",
+            "Target": "Electricuted by Wires"
+          },
+          {
+            "Text": "Turn off the switch",
+            "Target": "Switch off"
+          }
+        ]
+      },
+      "Switch off": {
+        "Body": "You hear a power source whirring down and the wires stop sparking.",
+        "Choices": [
+          {
+            "Text": "Take Wires",
+            "Target": "Look Around",
+            "InventoryAdd": "Wires"
+          }
+        ]
+      },
+      "Electricuted by Wires": {
+        "Body": "You attempt to cut the wires, but the wire is electrified and you lethally shock yourself.\nYour heart stops.",
+        "Choices": [
+          {
+            "Text": "Try Again?",
+            "Target": "Start"
+          }
+        ]
+      },
+      "Wrench": {
+        "Body": "You find a rusty old box with some disintegrated tools—one of them seems usable.",
+        "Choices": [
+          {
+            "Text": "Take Wrench",
+            "Target": "Look Around",
+            "InventoryAdd": "Wrench"
+          }
+        ]
+      },
+  
+      "Go through the door": {
+        "Body": "You see a closed panel box and a sealed door with a red light above.",
+        "RequiredInventory": ["Knife","Electrical Components","Power Cell","Wires","Wrench"],
+        "LockedMessage": "The door is sealed shut. You need all your tools to proceed.",
+        "Choices": [
+          {
+            "Text": "Pry open the panel box",
+            "Target": "Pry open the panel box"
+          }
+        ]
+      },
+      "Pry open the panel box": {
+        "Body": "You use the knife to open the panel box and see that it is empty except for some wire terminals.",
+        "Choices": [
+          {
+            "Text": "Fasten Switch Component with Wrench",
+            "Target": "Fasten Switch Component with Wrench"
+          }
+        ]
+      },
+      "Fasten Switch Component with Wrench": {
+        "Body": "You fasten the electrical component inside the panel box.",
+        "Choices": [
+          {
+            "Text": "Connect up the Wires",
+            "Target": "Connect up the Wires"
+          }
+        ]
+      },
+      "Connect up the Wires": {
+        "Body": "You connect the electrical components to the wires.",
+        "Choices": [
+          {
+            "Text": "Attach the Power Cell",
+            "Target": "Attach the Power Cell"
+          }
+        ]
+      },
+      "Attach the Power Cell": {
+        "Body": "You attach the power cell and close the panel box.\n\nThe light above the door turns green.",
+        "Choices": [
+          {
+            "Text": "Press the button to open the door",
+            "Target": "Press the button to open the door"
+          }
+        ]
+      },
+      "Press the button to open the door": {
+        "Body": "The door opens back to a maintenance hatch leading into another room.",
+        "Choices": [
+          {
+            "Text": "Enter another room",
+            "Target": "Enter another room"
+          }
+        ]
+      },
+      "Enter another room": {
+        "Body": "You see a terminal asking for a password; above it, a diagonal line etched into the wall (like this: /).\nYou also notice scratch marks on the four walls.",
+        "Choices": [
+          {
+            "Text": "Wall 1",
+            "Target": "Wall 1"
+          },
+          {
+            "Text": "Wall 2",
+            "Target": "Wall 2"
+          },
+          {
+            "Text": "Wall 3",
+            "Target": "Wall 3"
+          },
+          {
+            "Text": "Wall 4",
+            "Target": "Wall 4"
+          },
+          {
+            "Text": "Enter passcode",
+            "Target": "Enter passcode"
+          }
+        ]
+      },
+      "Wall 1": {
+        "Body": "You examine the wall and make out a very small number 9.",
+        "Choices": [
+          {
+            "Text": "Go Back",
+            "Target": "Enter another room"
+          }
+        ]
+      },
+      "Wall 2": {
+        "Body": "You examine the wall and make out a very large number 2.",
+        "Choices": [
+          {
+            "Text": "Go Back",
+            "Target": "Enter another room"
+          }
+        ]
+      },
+      "Wall 3": {
+        "Body": "You examine the wall and make out a somewhat small number 5.",
+        "Choices": [
+          {
+            "Text": "Go Back",
+            "Target": "Enter another room"
+          }
+        ]
+      },
+      "Wall 4": {
+        "Body": "You examine the wall and make out a somewhat large number 7.",
+        "Choices": [
+          {
+            "Text": "Go Back",
+            "Target": "Enter another room"
+          }
+        ]
+      },
+      "Enter passcode": {
+        "Body": "A keypad awaits. You must choose your 4‑digit entry:",
+        "Choices": [
+          {
+            "Text": "Enter 9572",
+            "Target": "Finish"
+          },
+          {
+            "Text": "Enter anything else",
+            "Target": "A grenade drops"
+          }
+        ]
+      },
+      "A grenade drops": {
+        "Body": "Everything goes dark.",
+        "Choices": [
+          {
+            "Text": "Try Again?",
+            "Target": "Start"
+          }
+        ]
+      },
+      "Finish": {
+        "Body": "Congratulations—you’ve escaped the garbage disposal room!",
+        "Choices": []
+      }
     }
-}
+  }

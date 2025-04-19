@@ -5,7 +5,6 @@ class Engine {
     }
 
     constructor(firstSceneClass, storyDataUrl) {
-
         this.firstSceneClass = firstSceneClass;
         this.storyDataUrl = storyDataUrl;
 
@@ -13,12 +12,15 @@ class Engine {
         this.output = document.body.appendChild(document.createElement("div"));
         this.actionsContainer = document.body.appendChild(document.createElement("div"));
 
+        // initialize inventory
+        this.inventory = [];
+
         fetch(storyDataUrl).then(
             (response) => response.json()
         ).then(
             (json) => {
                 this.storyData = json;
-                this.gotoScene(firstSceneClass)
+                this.gotoScene(firstSceneClass);
             }
         );
     }
@@ -32,11 +34,12 @@ class Engine {
         let button = this.actionsContainer.appendChild(document.createElement("button"));
         button.innerText = action;
         button.onclick = () => {
-            while(this.actionsContainer.firstChild) {
-                this.actionsContainer.removeChild(this.actionsContainer.firstChild)
+            // clear existing choices
+            while (this.actionsContainer.firstChild) {
+                this.actionsContainer.removeChild(this.actionsContainer.firstChild);
             }
             this.scene.handleChoice(data);
-        }
+        };
     }
 
     setTitle(title) {
@@ -49,8 +52,26 @@ class Engine {
         div.innerHTML = msg;
         this.output.appendChild(div);
     }
-}
 
+    // inventory helpers
+    addItem(item) {
+        if (!this.inventory.includes(item)) {
+            this.inventory.push(item);
+        }
+    }
+
+    hasItem(item) {
+        return this.inventory.includes(item);
+    }
+
+    hasItems(items) {
+        return items.every(i => this.inventory.includes(i));
+    }
+
+    getInventory() {
+        return this.inventory;
+    }
+}
 class Scene {
     constructor(engine) {
         this.engine = engine;
